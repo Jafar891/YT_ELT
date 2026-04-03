@@ -3,7 +3,7 @@ from psycopg2.extras import RealDictCursor
 
 table = "yt_api"
 
-def get_conn_cursor(conn_id):
+def get_conn_cursor():
     hook = PostgresHook(postgres_conn_id="POSTGRES_DB_YT_ELT", database="elt_db")
     conn = hook.get_conn()
     cursor = conn.cursor(cursor_factory=RealDictCursor)
@@ -61,7 +61,7 @@ def create_table(schema):
 
     close_conn_cursor(conn, cur)
 
-def get_video_ids(schema):
+def get_video_ids(cur, schema):
     
     cur.execute(f"SELECT \"Video_ID\" FROM {schema}.{table};")
     ids = cur.fetchall()
