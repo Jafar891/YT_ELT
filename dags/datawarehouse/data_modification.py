@@ -58,12 +58,13 @@ def update_rows(cur,conn,schema,row):
             cur.execute(
                 f"""
                 UPDATE {schema}.{table}
-                SET video_title = %({video_title}s,
-                video_views = %({video_views}s,
-                likes_count = %({likes_count}s,
-                comments_count = %({comments_count}s
-             WHERE "Video_ID" = %({video_id}s AND "Upload_Date" = %({upload_date}s);
-                """,row
+                SET "Video_Title" = %({video_title})s,
+                    "Video_Views" = %({video_views})s,
+                    "Likes_Count" = %({likes_count})s,
+                    "Comments_Count" = %({comments_count})s
+                WHERE "Video_ID" = %({video_id})s
+                AND "Upload_Date" = %({upload_date})s;
+                """, row
             )
 
         conn.commit()
