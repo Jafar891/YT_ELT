@@ -5,7 +5,7 @@ from api.video_stats import get_playlist_id, get_video_ids, extract_video_data, 
 
 
 from datawarehouse.dwh import staging_table, core_table
-
+from dataquality.soda import yt_elt_data_quality
 
 
 #define the local timezone
@@ -26,6 +26,10 @@ default_args = {
     "end_date": datetime(2030, 12, 31, tzinfo=local_tz),
     
 }
+
+staging_schema = "staging"
+core_schema = "core"
+
 
 with DAG(
     dag_id="produce_json",
@@ -49,7 +53,7 @@ with DAG(
     dag_id="update_db",
     default_args=default_args,
     description="A DAG to process the JSON file and update the staging and core tables in the data warehouse",
-    schedule_interval='0 15 * * *',  # Run daily at 14:00 (2 PM) local time
+    schedule_interval='0 15 * * *',  # Run daily at 15:00 (3 PM) local time
     catchup=False,
 ) as dag:
     
@@ -59,3 +63,20 @@ with DAG(
 
     #define task dependencies
     update_staging_table >> update_core_table
+
+
+
+with DAG(
+    dag_id="data_quality_checks",
+    default_args=default_args,
+    description="DAG to run data quality checks on the processed data",
+    schedule_interval='0 16 * * *',  # Run daily at 16:00 (4 PM) local time
+    catchup=False,
+) as dag:
+    
+    #define tasks
+    soda_validate_staging = yt_elt_data_quality(staging_schema)
+    soda_validate_core = yt_elt_data_quality(core_schema)
+
+    #define task dependencies
+    soda_validate_staging >> soda_validate_core
