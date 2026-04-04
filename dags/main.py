@@ -38,7 +38,7 @@ with DAG(
     dag_id="produce_json",
     default_args=default_args,
     description="A DAG to extract video statistics from a YouTube channel and save it as a JSON file",
-    schedule_interval='0 14 * * *',  # Run daily at 14:00 (2 PM) local time
+    schedule='0 14 * * *',  # Run daily at 14:00 (2 PM) local time
     catchup=False,
 ) as dag_produce:
     
