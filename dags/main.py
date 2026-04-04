@@ -51,7 +51,7 @@ with DAG(
     trigger_update_db = TriggerDagRunOperator(
         task_id="trigger_update_db",
         trigger_dag_id="update_db",  # ID of the DAG to trigger
-        wait_for_completion=True,  # Wait for the triggered DAG to complete before proceeding
+        wait_for_completion=False,  # Wait for the triggered DAG to complete before proceeding
     )
 
     #define task dependencies
@@ -74,7 +74,7 @@ with DAG(
     trigger_data_quality_checks = TriggerDagRunOperator(
         task_id="trigger_data_quality_checks",
         trigger_dag_id="data_quality_checks",  # ID of the DAG to trigger
-        wait_for_completion=True,  # Wait for the triggered DAG to complete before proceeding
+        wait_for_completion=False,  # Wait for the triggered DAG to complete before proceeding
     )
 
     #define task dependencies
