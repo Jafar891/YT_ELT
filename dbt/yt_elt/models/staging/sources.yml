@@ -8,18 +8,16 @@ sources:
       - name: yt_api
         description: "Typed and deduplicated YouTube video metadata"
         columns:
-          - name: Video_ID
+          - name: '"Video_ID"'
             tests:
               - unique
               - not_null
-          - name: Video_Title
+          - name: '"Video_Title"'
             tests:
               - not_null
-          - name: Upload_Date
+          - name: '"Upload_Date"'
             tests:
               - not_null
-          - name: Duration
-          - name: Video_Type
-          - name: Video_Views
-          - name: Likes_Count
-          - name: Comments_Count
+          - name: '"Video_Views"'
+          - name: '"Likes_Count"'
+          - name: '"Comments_Count"'

@@ -2,18 +2,18 @@ version: 2
 
 models:
   - name: stg_videos
-    description: "Cleaned staging layer from core.videos — nulls coalesced to 0"
+    description: "Cleaned staging layer from core.yt_api"
     columns:
       - name: video_id
         tests:
           - unique
           - not_null
-      - name: view_count
+      - name: video_views
         tests:
           - not_null
 
   - name: mart_engagement_rate
-    description: "Engagement rate per video — (likes + comments) / views * 100"
+    description: "Engagement rate per video"
     columns:
       - name: video_id
         tests:
