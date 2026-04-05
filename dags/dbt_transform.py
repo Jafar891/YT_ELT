@@ -1,6 +1,7 @@
 from airflow import DAG
 from airflow.operators.bash import BashOperator
 from airflow.sensors.external_task import ExternalTaskSensor
+from airflow.utils.state import DagRunState
 from datetime import datetime, timedelta
 
 DBT_PROJECT_DIR = "/opt/airflow/dbt/yt_elt"
@@ -16,7 +17,7 @@ with DAG(
     dag_id="dbt_transform",
     default_args=default_args,
     description="Run dbt models after update_db completes",
-    schedule_interval=None,
+    schedule=None,                  # fix 1: schedule_interval → schedule
     start_date=datetime(2024, 1, 1),
     catchup=False,
     tags=["dbt", "transform"],
@@ -25,9 +26,9 @@ with DAG(
     wait_for_update_db = ExternalTaskSensor(
         task_id="wait_for_update_db",
         external_dag_id="update_db",
-        external_task_id=None,  # waits for the whole DAG to complete
-        allowed_states=["success"],
-        failed_states=["failed", "skipped"],
+        external_task_id=None,
+        allowed_states=[DagRunState.SUCCESS],       # fix 2: use DagRunState enum
+        failed_states=[DagRunState.FAILED],
         timeout=3600,
         poke_interval=30,
         mode="poke",
