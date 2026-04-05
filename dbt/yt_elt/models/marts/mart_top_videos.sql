@@ -8,12 +8,12 @@ ranked as (
 
     select
         video_id,
-        title,
-        published_at,
-        view_count,
-        like_count,
-        comment_count,
-        rank() over (order by view_count desc) as view_rank
+        video_title,
+        upload_date,
+        video_views,
+        likes_count,
+        comments_count,
+        rank() over (order by video_views desc) as view_rank
     from videos
 
 )

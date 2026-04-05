@@ -7,19 +7,17 @@ with videos as (
 monthly as (
 
     select
-        date_trunc('month', published_at)::date  as publish_month,
-        count(*)                                  as videos_published,
-        sum(view_count)                           as total_views,
-        sum(like_count)                           as total_likes,
-        sum(comment_count)                        as total_comments,
-        round(avg(view_count), 0)                 as avg_views_per_video,
-
-        -- Average engagement rate for the month
+        date_trunc('month', upload_date::timestamp)::date  as publish_month,
+        count(*)                                            as videos_published,
+        sum(video_views)                                    as total_views,
+        sum(likes_count)                                    as total_likes,
+        sum(comments_count)                                 as total_comments,
+        round(avg(video_views), 0)                          as avg_views_per_video,
         round(
             avg(
                 case
-                    when view_count = 0 then 0
-                    else (like_count + comment_count)::numeric / view_count::numeric * 100
+                    when video_views = 0 then 0
+                    else (likes_count + comments_count)::numeric / video_views::numeric * 100
                 end
             ),
             4

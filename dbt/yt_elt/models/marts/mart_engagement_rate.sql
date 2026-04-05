@@ -8,31 +8,27 @@ engagement as (
 
     select
         video_id,
-        title,
-        published_at,
-        view_count,
-        like_count,
-        comment_count,
+        video_title,
+        upload_date,
+        video_views,
+        likes_count,
+        comments_count,
 
-        -- Engagement rate: (likes + comments) / views
         case
-            when view_count = 0 then 0
+            when video_views = 0 then 0
             else round(
-                (like_count + comment_count)::numeric / view_count::numeric * 100,
+                (likes_count + comments_count)::numeric / video_views::numeric * 100,
                 4
             )
         end as engagement_rate_pct,
 
-        -- Like rate: likes / views
         case
-            when view_count = 0 then 0
+            when video_views = 0 then 0
             else round(
-                like_count::numeric / view_count::numeric * 100,
+                likes_count::numeric / video_views::numeric * 100,
                 4
             )
-        end as like_rate_pct,
-
-        updated_at
+        end as like_rate_pct
 
     from videos
 
