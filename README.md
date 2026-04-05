@@ -113,7 +113,7 @@ Here are real screenshots of the end-to-end pipeline running successfully:
 ![Mart Tables Output](screenshots/Mart_tables_output.png)  
 
 
-![CI/CD Checks](screenshots/CI_Cheks.png)
+![CI/CD Checks](screenshots/CI_Checks.png)
 
 ---
 
