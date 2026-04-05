@@ -99,6 +99,15 @@ All services run in Docker containers managed by `docker-compose`:
 | `airflow-worker` | Executes tasks via CeleryExecutor |
 | `airflow-init` | One-shot init: DB migrations + admin user creation |
 
+## 🚀 Pipeline in Action
+
+Here are real screenshots of the end-to-end pipeline running successfully:
+
+![Airflow DAGs List] (Airflow_DAGs_list.png)
+![Soda Core Data Quality Checks] (Soda_Core_Report.png)
+![CI Checks] (CI_Cheks.png)
+![Tables output] (Mart_tables_output.png)
+
 ---
 
 ## Tech Stack
