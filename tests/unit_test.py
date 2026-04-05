@@ -39,7 +39,7 @@ def test_dags_integrity(dagbag):
         "produce_json": 5,
         "update_db": 3,
         "data_quality_checks": 2,
-        "dbt_transform": 4,
+        "dbt_transform": 3,
     }
     print("=================")
     for dag_id, dag in dagbag.dags.items():
