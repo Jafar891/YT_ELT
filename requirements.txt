@@ -1,5 +1,5 @@
 soda-core-postgres==3.3.14
 pytest==8.3.2
-dbt-core==1.8.0
-dbt-postgres==1.8.0
+dbt-core==1.7.0
+dbt-postgres==1.7.0
 # updated
