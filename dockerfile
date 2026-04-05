@@ -7,4 +7,7 @@ ENV AIRFLOW_HOME=/opt/airflow
 
 COPY requirements.txt /
 
+RUN apt-get update && apt-get install -y git && apt-get clean
+COPY dbt/ /opt/airflow/dbt/
+
 RUN pip install --no-cache-dir "apache-airflow==${AIRFLOW_VERSION}" -r /requirements.txt

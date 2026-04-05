@@ -1,0 +1,29 @@
+version: 2
+
+sources:
+  - name: core
+    schema: core
+    description: "Core schema populated by the update_db Airflow DAG"
+    tables:
+      - name: videos
+        description: "Typed and deduplicated YouTube video metadata"
+        columns:
+          - name: video_id
+            description: "YouTube video ID — primary key"
+            tests:
+              - unique
+              - not_null
+          - name: title
+            description: "Video title"
+            tests:
+              - not_null
+          - name: published_at
+            description: "Video publish timestamp"
+            tests:
+              - not_null
+          - name: view_count
+            description: "Total views"
+          - name: like_count
+            description: "Total likes — nullable if hidden"
+          - name: comment_count
+            description: "Total comments — nullable if disabled"

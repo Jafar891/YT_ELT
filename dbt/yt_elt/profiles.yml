@@ -1,0 +1,12 @@
+yt_elt:
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      host: "{{ env_var('POSTGRES_CONN_HOST') }}"
+      port: "{{ env_var('POSTGRES_CONN_PORT') | int }}"
+      user: "{{ env_var('ELT_DATABASE_USERNAME') }}"
+      password: "{{ env_var('ELT_DATABASE_PASSWORD') }}"
+      dbname: "{{ env_var('ELT_DATABASE_NAME') }}"
+      schema: marts
+      threads: 4

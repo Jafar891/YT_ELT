@@ -1,0 +1,23 @@
+name: 'yt_elt'
+version: '1.0.0'
+config-version: 2
+
+profile: 'yt_elt'
+
+model-paths: ["models"]
+test-paths: ["tests"]
+snapshot-paths: ["snapshots"]
+
+target-path: "target"
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  yt_elt:
+    staging:
+      +schema: staging
+      +materialized: view
+    marts:
+      +schema: marts
+      +materialized: table

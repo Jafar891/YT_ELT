@@ -1,0 +1,46 @@
+version: 2
+
+models:
+  - name: stg_videos
+    description: "Cleaned staging layer from core.videos — nulls coalesced to 0"
+    columns:
+      - name: video_id
+        tests:
+          - unique
+          - not_null
+      - name: view_count
+        tests:
+          - not_null
+
+  - name: mart_engagement_rate
+    description: "Engagement rate per video — (likes + comments) / views * 100"
+    columns:
+      - name: video_id
+        tests:
+          - unique
+          - not_null
+      - name: engagement_rate_pct
+        tests:
+          - not_null
+
+  - name: mart_top_videos
+    description: "All videos ranked by view count descending"
+    columns:
+      - name: video_id
+        tests:
+          - unique
+          - not_null
+      - name: view_rank
+        tests:
+          - not_null
+
+  - name: mart_monthly_aggregates
+    description: "Monthly rollup of publishing activity and engagement"
+    columns:
+      - name: publish_month
+        tests:
+          - unique
+          - not_null
+      - name: videos_published
+        tests:
+          - not_null
