@@ -21,7 +21,7 @@ def test_dags_integrity(dagbag):
     print(dagbag.import_errors)
 
     #2 Check for expected DAGs
-    expeceted_dags = ["produce_json","update_db","data_quality_checks"]
+    expeceted_dags = ["produce_json","update_db","data_quality_checks", "dbt_transform"]
     loaded_dag_ids = list(dagbag.dags.keys())
     print("=================")
     print(dagbag.dags.keys())
@@ -30,7 +30,7 @@ def test_dags_integrity(dagbag):
         assert dag_id in loaded_dag_ids, f"DAG '{dag_id}' is missing from the DagBag"
     
     #3 Check for the total number of DAGs
-    assert dagbag.size() == 3
+    assert dagbag.size() == 4
     print("=================")
     print(dagbag.size())
 
@@ -38,7 +38,8 @@ def test_dags_integrity(dagbag):
     expected_task_counts = {
         "produce_json": 5,
         "update_db": 3,
-        "data_quality_checks": 2
+        "data_quality_checks": 2,
+        "dbt_transform": 4,
     }
     print("=================")
     for dag_id, dag in dagbag.dags.items():
