@@ -4,9 +4,17 @@
 
 **Jafar Gahramanov** — [LinkedIn](https://www.linkedin.com/in/jafar-gahramanov/) · [GitHub](https://github.com/Jafar891)
 
-![CI/CD](https://github.com/Jafar891/YT_ELT/actions/workflows/ci-cd_yt-elt.yaml/badge.svg)
-
 A production-style ELT pipeline that extracts data from the **YouTube Data API v3**, loads it into a **PostgreSQL** data warehouse (staging → core schema), runs automated data quality checks, and transforms data into analytics-ready mart tables via **dbt** — all orchestrated by **Apache Airflow**, containerised with **Docker**, tested with **pytest + Soda Core**, and deployed via **GitHub Actions CI/CD**.
+
+[![CI/CD](https://github.com/Jafar891/YT_ELT/actions/workflows/ci.yml/badge.svg)](https://github.com/Jafar891/YT_ELT/actions/workflows/ci.yml)
+[![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white&style=flat)](https://www.docker.com/)
+[![Apache Airflow](https://img.shields.io/badge/Apache%20Airflow-017CEE?logo=apacheairflow&logoColor=white&style=flat)](https://airflow.apache.org/)
+[![dbt](https://img.shields.io/badge/dbt-FF694B?logo=dbt&logoColor=white&style=flat)](https://www.getdbt.com/)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?logo=postgresql&logoColor=white&style=flat)](https://www.postgresql.org/)
+[![Soda Core](https://img.shields.io/badge/Soda%20Core-14B8A6?logo=check-circle&logoColor=white&style=flat)](https://www.soda.io/)
+[![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white&style=flat)](https://www.python.org/)
+
+
 
 ---
 
